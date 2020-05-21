@@ -1,0 +1,7 @@
+FROM centos:latest
+WORKDIR '/app'
+RUN yum install -y npm
+COPY package.json .
+RUN npm install
+EXPOSE 4200
+CMD ["npm", "start"]

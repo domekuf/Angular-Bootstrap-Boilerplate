@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { AdminService } from '../services/admin.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { take, switchMap, map, catchError } from 'rxjs/operators';
+import { User } from 'src/app/auth/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,16 +26,16 @@ export class AdminGuard implements CanActivate {
           }
           return this.adminService.checkAdminRole(user.uid)
           .pipe(
-            map( (isAdmin) => {
-              if (isAdmin) {
+            map( (user: User) => {
+              if (user.isAdmin) {
                 return true;
               } else {
-                this.router.navigateByUrl('');
+                this.router.navigateByUrl('/main');
                 return false;
               }
             }),
             catchError( () => {
-              this.router.navigateByUrl('');
+              this.router.navigateByUrl('/main');
               return of(false);
             })
           );

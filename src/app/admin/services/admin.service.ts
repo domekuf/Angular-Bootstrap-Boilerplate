@@ -28,7 +28,7 @@ export class AdminService {
   }
 
   checkAdminRole(uid: string) {
-    return this.db.object('admins/' + uid).valueChanges();
+    return this.db.object('users/' + uid).valueChanges();
   }
 
   deleteUserProject(uid: string, projectId: string) {
@@ -40,13 +40,13 @@ export class AdminService {
   }
 
   addAdminPrivileges(uid: string) {
-    const adminsRef = this.db.object('admins/' + uid);
+    const adminsRef = this.db.object('users/' + uid);
     this.db.object('users/' + uid).update({ isAdmin: true });
     return from(adminsRef.set(true));
   }
 
   removeAdminPrivileges(uid: string) {
     this.db.object('users/' + uid).update({ isAdmin: false });
-    return from(this.db.object('admins/' + uid).remove());
+    return from(this.db.object('users/' + uid).remove());
   }
 }
