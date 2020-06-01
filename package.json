@@ -3,8 +3,23 @@
   "version": "8.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --port 4200 --host 0.0.0.0 --poll=500",
+    "build": "ng build --prod",
+    "component-admin": "ng generate component core/admin",
+    "component-orders": "ng generate component orders/containers/orders",
+    "service-orders": "ng generate service orders/services/orders",
+    "component-orders-list": "ng generate component shared/components/orders-list",
+    "component-order": "ng generate component shared/components/order",
+
+    "component-products": "ng generate component products/containers/products",
+    "service-products": "ng generate service products/services/products",
+    "component-products-list": "ng generate component shared/components/products-list",
+    "component-product": "ng generate component shared/components/product",
+    "products-module": "ng generate module products",
+    "products-routing-module": "ng generate module products-routing",
+
+    "test-combo": "echo test-combo && echo second",
+
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -41,7 +56,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.23",
-    "@angular/cli": "~8.3.20",
+    "@angular/cli": "^8.3.26",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
     "@ngrx/schematics": "^8.5.2",
