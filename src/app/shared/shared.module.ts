@@ -14,15 +14,23 @@ import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 import { CustomersListComponent } from './components/customers-list/customers-list.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
+import { OrderComponent } from './components/order/order.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
     ConfirmModalComponent,
     CustomersModalComponent,
+    OrderComponent,
+    OrdersListComponent,
     ProjectModalComponent,
     ProjectsListComponent,
     ProjectComponent,
-    CustomersListComponent
+    CustomersListComponent,
+    ProductsListComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +41,10 @@ import { CustomersListComponent } from './components/customers-list/customers-li
     ButtonsModule,
     CardsModule
   ],
-  exports: [ProjectsListComponent, ProjectComponent, CustomersListComponent],
+  exports: [
+    ProjectsListComponent, ProjectComponent, CustomersListComponent,
+    OrderComponent, OrdersListComponent
+  ],
   providers: [],
   entryComponents: [
     ConfirmModalComponent,
