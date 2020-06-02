@@ -43,7 +43,7 @@ import { ProductComponent } from './components/product/product.component';
   ],
   exports: [
     ProjectsListComponent, ProjectComponent, CustomersListComponent,
-    OrderComponent, OrdersListComponent
+    OrderComponent, OrdersListComponent, ProductComponent, ProductsListComponent
   ],
   providers: [],
   entryComponents: [
