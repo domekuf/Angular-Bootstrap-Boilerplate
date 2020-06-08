@@ -1,0 +1,47 @@
+<div class="container">
+    <div *ngIf="product; else loading">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="md-form">
+                    <input mdbInput type="text" name="name" [(ngModel)]="product.name" id="name" class="form-control">
+                    <label for="name" class="">Nome</label>
+                </div>
+                
+                <div *ngFor="let r of product.radio; let i = index" class="custom-control custom-radio">
+                    <input type="radio" class="form-check-input" id="radio-{{i}}"
+                        name="radio" mdbInput
+                        [(ngModel)]="a" [value]="a"
+                        >
+                    <label class="form-check-label" for="radio-{{i}}">{{r}}</label>
+                </div>
+                <div class="md-form input-group mb-3">
+                    <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
+                      aria-describedby="button-addon1">
+                    <div class="input-group-append">
+                      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon1"
+                        (click)="addRadio()"
+                        mdbWavesEffect>Aggiungi</button>
+                    </div>
+                </div>
+                <mdb-checkbox *ngFor="let r of product.radio" [default]="true">{{r}}</mdb-checkbox>
+                <div class="md-form input-group mb-3">
+                    <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
+                      aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
+                        (click)="addRadio()"
+                        mdbWavesEffect>Aggiungi</button>
+                    </div>
+                </div>
+                <a mdbBtn mdbWavesEffect (click)="save()" color="orange">Salva</a>
+            </div>
+        </div>
+    </div>
+    <ng-template #loading>
+        <div class="row text-center">
+            <div class="col">
+                <app-loading></app-loading>
+            </div>
+        </div>
+    </ng-template>
+</div>

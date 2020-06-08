@@ -20,12 +20,7 @@ export class ProductsComponent implements OnInit {
   }
 
   add() {
-    const product: Product = {
-      name: 'Birra alla spina',
-      radio: ['Media', 'Piccola'],
-      check: []
-    };
-    this.productsService.add(product);
+    console.log("TODO link to /new");
   }
 
 }

@@ -18,6 +18,7 @@ import { OrdersListComponent } from './components/orders-list/orders-list.compon
 import { OrderComponent } from './components/order/order.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { ProductComponent } from './components/product/product.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductComponent } from './components/product/product.component';
     ProjectComponent,
     CustomersListComponent,
     ProductsListComponent,
-    ProductComponent
+    ProductComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,7 @@ import { ProductComponent } from './components/product/product.component';
   ],
   exports: [
     ProjectsListComponent, ProjectComponent, CustomersListComponent,
-    OrderComponent, OrdersListComponent, ProductComponent, ProductsListComponent
+    OrderComponent, OrdersListComponent, ProductComponent, ProductsListComponent, LoadingComponent
   ],
   providers: [],
   entryComponents: [
