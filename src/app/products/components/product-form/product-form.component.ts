@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { Product, ProductCheck } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -13,12 +13,26 @@ export class ProductFormComponent implements OnInit {
   new: boolean;
   product: Product;
   newRadio: string;
+  newCheck: ProductCheck = {
+    text: '',
+    checked: false
+  };
   radioModel: boolean[];
   a: boolean = false;
 
   addRadio() {
     this.product.radio.push(this.newRadio);
     this.newRadio = '';
+  }
+
+  addCheck() {
+    if (!this.product.check)
+      this.product.check = [];
+    this.product.check.push(this.newCheck);
+    this.newCheck = {
+      text: '',
+      checked: false
+    };
   }
   constructor(
     private productsService: ProductsService,

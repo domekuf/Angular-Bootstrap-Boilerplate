@@ -15,7 +15,7 @@
                     <label class="form-check-label" for="radio-{{i}}">{{r}}</label>
                 </div>
                 <div class="md-form input-group mb-3">
-                    <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
+                    <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova versione" aria-label="Nuova versione"
                       aria-describedby="button-addon1">
                     <div class="input-group-append">
                       <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon1"
@@ -23,16 +23,17 @@
                         mdbWavesEffect>Aggiungi</button>
                     </div>
                 </div>
-                <mdb-checkbox *ngFor="let r of product.radio" [default]="true">{{r}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let c of product.check; let i = index" [(ngModel)]="c.checked" name="check-{{i}}">{{c.text}} - {{i}}</mdb-checkbox>
                 <div class="md-form input-group mb-3">
-                    <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
+                    <input [(ngModel)]="newCheck.text" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
                       aria-describedby="button-addon2">
                     <div class="input-group-append">
                       <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
-                        (click)="addRadio()"
+                        (click)="addCheck()"
                         mdbWavesEffect>Aggiungi</button>
                     </div>
                 </div>
+                <a mdbBtn mdbWavesEffect routerLink="/products" color="default">Menu</a>
                 <a mdbBtn mdbWavesEffect (click)="save()" color="orange">Salva</a>
             </div>
         </div>

@@ -19,6 +19,7 @@ import { OrderComponent } from './components/order/order.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { ProductComponent } from './components/product/product.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     IconsModule,
     FormsModule,
     ButtonsModule,
-    CardsModule
+    CardsModule,
+    RouterModule
   ],
   exports: [
     ProjectsListComponent, ProjectComponent, CustomersListComponent,

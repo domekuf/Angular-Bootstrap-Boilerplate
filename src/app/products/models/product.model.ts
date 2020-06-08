@@ -5,7 +5,7 @@ export interface ProductCheck {
 export interface Product {
   key?: any;
   name?: any;
-  check?: ProductCheck;
+  check?: ProductCheck[];
   radio?: any;
   radioDefault?: number;
   status?: any;
