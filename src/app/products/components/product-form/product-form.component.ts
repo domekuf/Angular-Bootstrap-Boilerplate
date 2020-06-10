@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Product, ProductCheck } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/reducers';
+import { getIsAdmin } from 'src/app/auth/store/auth.selectors';
 
 @Component({
   selector: 'app-product-form',
@@ -10,6 +14,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ProductFormComponent implements OnInit {
 
+  isAdmin$: Observable<boolean>;
   new: boolean;
   product: Product;
   newRadio: string;
@@ -44,7 +49,8 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -55,7 +61,8 @@ export class ProductFormComponent implements OnInit {
         this.product = p || {};
         this.new = !p;
       });
-    })
+    });
+    this.isAdmin$ = this.store.select(getIsAdmin);
   }
 
   save() {

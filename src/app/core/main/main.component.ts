@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/reducers';
+import { Store } from '@ngrx/store';
+import { getIsAdmin } from 'src/app/auth/store/auth.selectors';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  isAdmin$: Observable<boolean>;
+
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit() {
+    this.isAdmin$ = this.store.select(getIsAdmin);
   }
 
 }

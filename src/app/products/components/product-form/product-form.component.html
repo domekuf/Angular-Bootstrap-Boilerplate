@@ -1,16 +1,22 @@
-<div class="container">
-    <div *ngIf="product; else loading">
+<div *ngIf="product; else loading">
+    <div class="white px-4 section-header">
+      <div *ngIf="(isAdmin$ | async); else title" class="md-form">
+          <input mdbInput type="text" name="name" [(ngModel)]="product.name" id="name" class="form-control">
+          <label for="name" class="">Nome</label>
+      </div>
+      <ng-template #title>
+        <h3>{{product.name}}</h3>
+        <p class="grey-text pt-3">Personalizza e aggiungi al carrello</p>
+      </ng-template>
+    </div>
+    <div class="container">
         <div class="row mt-2">
             <div class="col">
-                <div class="md-form">
-                    <input mdbInput type="text" name="name" [(ngModel)]="product.name" id="name" class="form-control">
-                    <label for="name" class="">Nome</label>
-                </div>
                 <p *ngIf="product.radio && product.radio.length">Versioni</p>
-                <select *ngIf="product.radio.length" name="radio" id="radio" class="browser-default custom-select" [(ngModel)]="product.radioDefault">
+                <select *ngIf="product.radio && product.radio.length" name="radio" id="radio" class="browser-default custom-select" [(ngModel)]="product.radioDefault">
                     <option *ngFor="let r of product.radio; let i = index" value="{{i}}">{{r}}</option>
                 </select> 
-                <div class="md-form input-group mb-3">
+                <div *ngIf="isAdmin$ | async" class="md-form input-group mb-3">
                     <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova versione" aria-label="Nuova versione"
                       aria-describedby="button-addon1">
                     <div class="input-group-append">
@@ -27,7 +33,7 @@
                     [default]="true"
                     [(ngModel)]="c.checked"
                     name="ceck-{{i}}">{{c.text}}</mdb-checkbox>
-                <div class="md-form input-group mb-6">
+                <div *ngIf="isAdmin$ | async" class="md-form input-group">
                     <input [(ngModel)]="newCheck.text" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
                       aria-describedby="button-addon2">
                     <div class="input-group-append">
@@ -39,17 +45,24 @@
                         mdbWavesEffect>Reset</button>
                     </div>
                 </div>
-                <a mdbBtn class="btn-block" mdbWavesEffect routerLink="/products" color="default">Menu</a>
-                <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="warning">Annulla</a>
-                <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="save()" color="orange">Salva</a>
+                <div>
+                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect routerLink="/products" color="default">Menu</a>
+                </div>
+                <div *ngIf="(isAdmin$ | async); else cart">
+                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="warning">Annulla</a>
+                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="save()" color="orange">Salva</a>
+                </div>
+                <ng-template #cart>
+                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="orange">Aggiungi al carrello</a>
+                </ng-template>
             </div>
         </div>
     </div>
-    <ng-template #loading>
-        <div class="row text-center">
-            <div class="col">
-                <app-loading></app-loading>
-            </div>
-        </div>
-    </ng-template>
 </div>
+<ng-template #loading>
+    <div class="row text-center">
+        <div class="col">
+            <app-loading></app-loading>
+        </div>
+    </div>
+</ng-template>
