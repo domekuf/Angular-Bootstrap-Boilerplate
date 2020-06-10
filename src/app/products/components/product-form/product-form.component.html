@@ -23,7 +23,10 @@
                         mdbWavesEffect>Aggiungi</button>
                     </div>
                 </div>
-                <mdb-checkbox *ngFor="let c of product.check; let i = index" [(ngModel)]="c.checked" name="check-{{i}}">{{c.text}} - {{i}}</mdb-checkbox>
+                <mdb-checkbox *ngFor="let c of product.check; let i = index"
+                    [default]="true"
+                    [(ngModel)]="c.checked"
+                    name="ceck-{{i}}">{{c.text}}</mdb-checkbox>
                 <div class="md-form input-group mb-3">
                     <input [(ngModel)]="newCheck.text" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
                       aria-describedby="button-addon2">
