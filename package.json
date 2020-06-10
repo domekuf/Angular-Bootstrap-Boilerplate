@@ -17,6 +17,10 @@
     "component-product": "ng generate component shared/components/product",
     "products-module": "ng generate module products",
     "products-routing-module": "ng generate module products-routing",
+    "product-interface": "ng generate interface products/models/product --type=model",
+    "product-form-component": "ng generate component products/components/product-form",
+
+    "loading-component": "ng generate component shared/components/loading",
 
     "test-combo": "echo test-combo && echo second",
 
