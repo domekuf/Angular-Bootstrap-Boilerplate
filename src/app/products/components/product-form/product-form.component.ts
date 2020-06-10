@@ -17,11 +17,14 @@ export class ProductFormComponent implements OnInit {
     text: '',
     checked: false
   };
-  radioModel: boolean[];
-  a: boolean = false;
 
   addRadio() {
     this.product.radio.push(this.newRadio);
+    this.newRadio = '';
+  }
+
+  resetRadio() {
+    this.product.radio = [];
     this.newRadio = '';
   }
 
@@ -34,6 +37,11 @@ export class ProductFormComponent implements OnInit {
       checked: false
     };
   }
+
+  resetCheck() {
+    this.product.check = [];
+  }
+
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute
@@ -46,22 +54,11 @@ export class ProductFormComponent implements OnInit {
         querySub.unsubscribe();
         this.product = p || {};
         this.new = !p;
-        if (this.product.radio) {
-          this.radioModel = [];
-          for (let _ in this.product.radio)
-            this.radioModel.push(false);
-          if (this.product.radioDefault !== undefined && this.product.radioDefault < this.product.radio.size)
-            this.radioModel[this.product.radioDefault] = true;
-          else
-            this.product.radioDefault = 0;
-        }
-
       });
     })
   }
 
   save() {
-    console.log(this.radioModel);
     if (!this.new) {
       this.productsService.put(this.product);
     } else {

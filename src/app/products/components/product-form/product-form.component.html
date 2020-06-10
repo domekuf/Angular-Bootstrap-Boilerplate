@@ -6,38 +6,42 @@
                     <input mdbInput type="text" name="name" [(ngModel)]="product.name" id="name" class="form-control">
                     <label for="name" class="">Nome</label>
                 </div>
-                
-                <div *ngFor="let r of product.radio; let i = index" class="custom-control custom-radio">
-                    <input type="radio" class="form-check-input" id="radio-{{i}}"
-                        name="radio" mdbInput
-                        [(ngModel)]="a" [value]="a"
-                        >
-                    <label class="form-check-label" for="radio-{{i}}">{{r}}</label>
-                </div>
+                <p *ngIf="product.radio && product.radio.length">Versioni</p>
+                <select *ngIf="product.radio.length" name="radio" id="radio" class="browser-default custom-select" [(ngModel)]="product.radioDefault">
+                    <option *ngFor="let r of product.radio; let i = index" value="{{i}}">{{r}}</option>
+                </select> 
                 <div class="md-form input-group mb-3">
                     <input [(ngModel)]="newRadio" type="text" class="form-control" placeholder="Nuova versione" aria-label="Nuova versione"
                       aria-describedby="button-addon1">
                     <div class="input-group-append">
-                      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon1"
+                      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="radio-add"
                         (click)="addRadio()"
                         mdbWavesEffect>Aggiungi</button>
+                      <button mdbBtn color="orange" size="md" class="m-0 px-3 py-2" type="button" id="radio-reset"
+                        (click)="resetRadio()"
+                        mdbWavesEffect>Reset</button>
                     </div>
                 </div>
+                <p class="mt-4" *ngIf="product.check && product.check.length">Opzioni</p>
                 <mdb-checkbox *ngFor="let c of product.check; let i = index"
                     [default]="true"
                     [(ngModel)]="c.checked"
                     name="ceck-{{i}}">{{c.text}}</mdb-checkbox>
-                <div class="md-form input-group mb-3">
+                <div class="md-form input-group mb-6">
                     <input [(ngModel)]="newCheck.text" type="text" class="form-control" placeholder="Nuova opzione" aria-label="Nuova opzione"
                       aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
+                      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="check-add"
                         (click)="addCheck()"
                         mdbWavesEffect>Aggiungi</button>
+                      <button mdbBtn color="orange" size="md" class="m-0 px-3 py-2" type="button" id="radio-reset"
+                        (click)="resetCheck()"
+                        mdbWavesEffect>Reset</button>
                     </div>
                 </div>
-                <a mdbBtn mdbWavesEffect routerLink="/products" color="default">Menu</a>
-                <a mdbBtn mdbWavesEffect (click)="save()" color="orange">Salva</a>
+                <a mdbBtn class="btn-block" mdbWavesEffect routerLink="/products" color="default">Menu</a>
+                <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="warning">Annulla</a>
+                <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="save()" color="orange">Salva</a>
             </div>
         </div>
     </div>
