@@ -22,6 +22,9 @@
       <li *ngIf="isLoggedIn && !isLoading" class="nav-item">
         <a (click)="navbar.hide()" class="nav-link waves-light" routerLink="/orders" routerLinkActive="active" mdbWavesEffect>Ordini</a>
       </li>
+      <li *ngIf="isLoggedIn && !isLoading" class="nav-item">
+        <a (click)="navbar.hide()" class="nav-link waves-light" routerLink="/orders" routerLinkActive="active" mdbWavesEffect>Carrello: {{ cart?cart.length:0 }}</a>
+      </li>
     </ul>
     <!-- Links -->
 

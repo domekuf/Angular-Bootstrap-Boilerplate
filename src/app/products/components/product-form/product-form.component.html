@@ -49,11 +49,11 @@
                     <a mdbBtn class="btn-block mt-4" mdbWavesEffect routerLink="/products" color="default">Menu</a>
                 </div>
                 <div *ngIf="(isAdmin$ | async); else cart">
-                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="warning">Annulla</a>
+                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="warning">Annulla modifiche</a>
                     <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="save()" color="orange">Salva</a>
                 </div>
                 <ng-template #cart>
-                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="ngOnInit()" color="orange">Aggiungi al carrello</a>
+                    <a mdbBtn class="btn-block mt-4" mdbWavesEffect (click)="addToCart()" color="orange">Aggiungi al carrello</a>
                 </ng-template>
             </div>
         </div>

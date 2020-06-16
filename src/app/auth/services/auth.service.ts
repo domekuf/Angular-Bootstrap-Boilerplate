@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { User } from '../models/user.model';
+import { Product } from 'src/app/products/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +71,21 @@ export class AuthService {
 
   getCurrentUser() {
     return this.afAuth.auth.currentUser;
+  }
+
+  putCart(uid: string, p: Product) {
+
+    const user = this.db.object('users/' + uid);
+    const sub = user.valueChanges().subscribe((usr: User) => {
+      sub.unsubscribe();
+      if (!usr) {
+        //TODO alarm
+        console.error('No user', usr);
+        return;
+      }
+      const cart = usr.cart || [];
+      cart.push(p);
+      user.update({cart:cart});
+    })
   }
 }

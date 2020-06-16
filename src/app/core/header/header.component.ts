@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { User } from '../../auth/models/user.model';
+import { Product } from 'src/app/products/models/product.model';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,7 @@ import { User } from '../../auth/models/user.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() cart: Product[];
   @Input() user: User;
   @Input() isLoggedIn: boolean;
   @Input() isLoading: boolean;

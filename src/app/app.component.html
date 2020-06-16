@@ -1,5 +1,6 @@
 <header>
   <app-header [user]="user$ | async" [isLoggedIn]="isLoggedIn$ | async" [isLoading]="isLoading$ | async" [isAdmin]="isAdmin$ | async"
+    [cart]="cart$ | async"
     (logout)="onLogout($event)"></app-header>
 </header>
 

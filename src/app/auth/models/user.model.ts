@@ -1,3 +1,5 @@
+import { Product } from "src/app/products/models/product.model";
+
 export interface User {
   uid: string;
   displayName: string;
@@ -7,4 +9,5 @@ export interface User {
   isNewUser?: boolean;
   isAdmin?: boolean;
   isOnline?: boolean;
+  cart?: Product[];
 }

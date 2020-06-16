@@ -5,7 +5,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
-import { getIsAdmin } from 'src/app/auth/store/auth.selectors';
+import { getIsAdmin, getUser } from 'src/app/auth/store/auth.selectors';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-product-form',
@@ -48,6 +49,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   constructor(
+    private authService: AuthService,
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private store: Store<AppState>
@@ -72,6 +74,19 @@ export class ProductFormComponent implements OnInit {
       this.productsService.post(this.product);
       this.new = false;
     }
+  }
+
+  addToCart() {
+    const sub = this.store.select(getUser).subscribe((usr) => {
+      if (sub)
+        sub.unsubscribe();
+      if (!usr) {
+        // TODO alarm
+        console.error('No user', usr);
+        return;
+      }
+      this.authService.putCart(usr.uid, this.product);
+    });
   }
 
 }

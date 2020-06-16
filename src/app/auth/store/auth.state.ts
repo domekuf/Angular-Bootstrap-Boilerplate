@@ -1,4 +1,5 @@
 import { User } from '../models/user.model';
+import { Product } from 'src/app/products/models/product.model';
 
 export interface AuthState {
   user: User | null;
@@ -6,6 +7,7 @@ export interface AuthState {
   isLoggedIn: boolean;
   isLoading: boolean;
   error: any;
+  cart: Product[];
 }
 
 export const authInitialState: AuthState = {
@@ -13,5 +15,6 @@ export const authInitialState: AuthState = {
   isAdmin: false,
   isLoggedIn: false,
   isLoading: true,
-  error: null
+  error: null,
+  cart: []
 };
