@@ -27,11 +27,3 @@ export const getError = createSelector(
   getAuthState,
   auth => auth.error
 );
-
-export const getCart = createSelector(
-  getAuthState,
-  (auth) => {
-    console.log(auth);
-    (auth.user?(auth.user.cart || []):[])
-  }
-)
